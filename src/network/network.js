@@ -1,8 +1,8 @@
-import { API_TOKEN } from '../constants/const';
+import { API_TOKEN, API_URL } from '../constants/const';
 
 const getDataApi = async (api) => {
   try {
-    const res = await fetch(`${api}${API_TOKEN}`);
+    const res = await fetch(`${API_URL}${api}${API_TOKEN}`);
     if (!res.ok) {
       console.error(`Could not fetch. Status - ${res.status}`);
       return false;

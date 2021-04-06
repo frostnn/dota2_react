@@ -3,10 +3,12 @@ import { NavLink } from 'react-router-dom';
 
 const MenuHeader = () => {
   const menuArr = [
-    { title: 'Menu 1', link: '/roster1' },
-    { title: 'Menu 2', link: '/roster2' },
-    { title: 'Menu 3', link: '/roster3' },
+    { title: 'Leagues', link: '/leagues' },
     { title: 'Heroes', link: '/heroes' },
+    { title: 'Items', link: '/items' },
+    { title: 'Matches', link: '/matches' },
+    { title: 'Players', link: '/players' },
+    { title: 'Teams', link: '/teams' },
   ];
   return (
     <div>
