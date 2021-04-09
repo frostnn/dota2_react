@@ -1,9 +1,12 @@
-/* import styles from './LogoHeader.module.scss'; */
-import logo from '../../assets/img/dota_logo.svg';
+import styles from './LogoHeader.module.scss';
+import logo from '../../assets/img/dota2_logo_horiz.png';
+import { NavLink } from 'react-router-dom';
 const LogoHeader = () => {
   return (
-    <div>
-      <img src={logo} alt="" width="80" />
+    <div className={styles.header_logo}>
+      <NavLink to="/">
+        <img src={logo} alt="" />
+      </NavLink>
     </div>
   );
 };

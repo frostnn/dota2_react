@@ -1,25 +1,22 @@
 import './App.scss';
 import Header from '../components/Header';
 import React from 'react';
-import Heroes from '../components/Heroes/Heroes';
 import { Route, Switch } from 'react-router';
-import Leagues from '../components/Leagues';
-import Items from '../components/Items';
-import Matches from '../components/Matches/Matches';
-import Players from '../components/Players';
-import Teams from '../components/Teams';
+import routesConfig from '../routes/routesConfig';
+import Content from '../containers/Content';
 const App = () => {
   return (
     <React.Fragment>
       <Header />
-      <Switch>
-        <Route path="/leagues" component={Leagues} exact />
-        <Route path="/heroes" component={Heroes} />
-        <Route path="/items" component={Items} />
-        <Route path="/matches" component={Matches} />
-        <Route path="/players" component={Players} />
-        <Route path="/teams" component={Teams} />
-      </Switch>
+      <Content>
+        <Switch>
+          {routesConfig.map(({ path, exact, component }, i) => {
+            return (
+              <Route path={path} component={component} exact={exact} key={`${component}_${i}`} />
+            );
+          })}
+        </Switch>
+      </Content>
     </React.Fragment>
   );
 };

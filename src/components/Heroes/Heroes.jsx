@@ -2,12 +2,20 @@ import styles from './Heroes.module.scss';
 import { API_HEROES } from '../../constants/const';
 import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
+import { withErrorApi } from '../../hoc/withErrorApi';
+import Loader from '../Loader';
 
-const Heroes = () => {
+const Heroes = ({ setErrorApi }) => {
   const [heroes, setHeroes] = useState([]);
+
   const getResurse = async (url) => {
-    const data = await getDataApi(url);
-    setHeroes(data);
+    try {
+      const data = await getDataApi(url);
+      setHeroes(data);
+      setErrorApi(false);
+    } catch (error) {
+      setErrorApi(true);
+    }
   };
 
   useEffect(() => {
@@ -15,16 +23,20 @@ const Heroes = () => {
   }, []);
 
   return (
-    <React.Fragment>
+    <div className={styles.heroes_block}>
       {heroes.length &&
         heroes.map(({ id, name, image_url }) => (
-          <div className={styles.heroes_item} key={id}>
-            {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
-            <h1>{name.replace(/_/g, ' ').toUpperCase()}</h1>
+          <div className={styles.heroes_block_item} key={id}>
+            <div className={styles.heroes_block_item_img}>
+              {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
+            </div>
+            <div className={styles.heroes_block_item_title}>
+              {name.replace(/_/g, ' ').toUpperCase()}
+            </div>
           </div>
         ))}
-    </React.Fragment>
+    </div>
   );
 };
 
-export default Heroes;
+export default withErrorApi(Heroes);

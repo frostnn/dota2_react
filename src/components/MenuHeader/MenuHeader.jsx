@@ -1,4 +1,4 @@
-/* import styles from './LogoHeader.module.scss'; */
+import styles from './MenuHeader.module.scss';
 import { NavLink } from 'react-router-dom';
 
 const MenuHeader = () => {
@@ -9,17 +9,22 @@ const MenuHeader = () => {
     { title: 'Matches', link: '/matches' },
     { title: 'Players', link: '/players' },
     { title: 'Teams', link: '/teams' },
+    { title: 'Live', link: '/live' },
   ];
   return (
-    <div>
-      <ul>
-        {menuArr.length &&
-          menuArr.map(({ title, link }, i) => (
-            <li key={`${title}_${i}`}>
-              <NavLink to={link}>{title}</NavLink>
-            </li>
-          ))}
-      </ul>
+    <div className={styles.header_menu}>
+      <nav className={styles.header_nav}>
+        <ul className={styles.header_nav_list}>
+          {menuArr.length &&
+            menuArr.map(({ title, link }, i) => (
+              <li key={`${title}_${i}`} className={styles.header_nav_list_item}>
+                <NavLink to={link} activeClassName={styles.header_nav_list_item_active}>
+                  {title}
+                </NavLink>
+              </li>
+            ))}
+        </ul>
+      </nav>
     </div>
   );
 };

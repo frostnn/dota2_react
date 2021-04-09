@@ -2,12 +2,19 @@ import styles from './Items.module.scss';
 import { API_ITEMS } from '../../constants/const';
 import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
+import { withErrorApi } from '../../hoc/withErrorApi';
 
-const Items = () => {
+const Items = ({ setErrorApi }) => {
   const [items, setItems] = useState([]);
+
   const getResurse = async (url) => {
-    const data = await getDataApi(url);
-    setItems(data);
+    try {
+      const data = await getDataApi(url);
+      setItems(data);
+      setErrorApi(false);
+    } catch (error) {
+      setErrorApi(true);
+    }
   };
 
   useEffect(() => {
@@ -27,4 +34,4 @@ const Items = () => {
   );
 };
 
-export default Items;
+export default withErrorApi(Items);

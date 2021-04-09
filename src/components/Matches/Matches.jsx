@@ -2,12 +2,19 @@ import styles from './Matches.module.scss';
 import { API_MATCHES } from '../../constants/const';
 import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
+import { withErrorApi } from '../../hoc/withErrorApi';
 
-const Matches = () => {
+const Matches = ({ setErrorApi }) => {
   const [matches, setMatches] = useState([]);
+
   const getResurse = async (url) => {
-    const data = await getDataApi(url);
-    setMatches(data);
+    try {
+      const data = await getDataApi(url);
+      setMatches(data);
+      setErrorApi(false);
+    } catch (error) {
+      setErrorApi(true);
+    }
   };
 
   useEffect(() => {
@@ -30,4 +37,4 @@ const Matches = () => {
   );
 };
 
-export default Matches;
+export default withErrorApi(Matches);

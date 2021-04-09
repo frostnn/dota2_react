@@ -2,12 +2,22 @@ import styles from './Players.module.scss';
 import { API_PLAYERS } from '../../constants/const';
 import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
+import { withErrorApi } from '../../hoc/withErrorApi';
+import Loader from '../Loader';
 
-const Players = () => {
+const Players = ({ setErrorApi }) => {
   const [players, setPlayers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const getResurse = async (url) => {
-    const data = await getDataApi(url);
-    setPlayers(data);
+    try {
+      const data = await getDataApi(url);
+      setPlayers(data);
+      setErrorApi(false);
+      setLoading(false);
+    } catch (error) {
+      setErrorApi(true);
+      setLoading(true);
+    }
   };
 
   useEffect(() => {
@@ -16,16 +26,20 @@ const Players = () => {
 
   return (
     <React.Fragment>
-      {players.length &&
+      {loading ? (
+        <Loader />
+      ) : (
+        players.length &&
         players.map(({ id, name, image_url, role }) => (
           <div className={styles.Players_item} key={id}>
             {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
             <h1>{name.replace(/_/g, ' ').toUpperCase()}</h1>
             <div>{role ? role : 'no('}</div>
           </div>
-        ))}
+        ))
+      )}
     </React.Fragment>
   );
 };
 
-export default Players;
+export default withErrorApi(Players);

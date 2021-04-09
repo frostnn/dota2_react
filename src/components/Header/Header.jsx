@@ -5,9 +5,9 @@ import MenuHeader from '../MenuHeader/MenuHeader';
 
 const Header = () => {
   return (
-    <header className={styles.header_nav}>
+    <header className={styles.header_menu}>
       <Wrapper>
-        <div className={styles.header_nav_content}>
+        <div className={styles.header_menu_content}>
           <LogoHeader />
           <MenuHeader />
         </div>
