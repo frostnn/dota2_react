@@ -3,7 +3,6 @@ import Items from '../components/Items';
 import Matches from '../components/Matches';
 import Players from '../components/Players';
 import Teams from '../components/Teams';
-
 import Heroes from '../components/Heroes';
 import Live from '../components/Live';
 const routesConfig = [

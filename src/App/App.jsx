@@ -10,11 +10,9 @@ const App = () => {
       <Header />
       <Content>
         <Switch>
-          {routesConfig.map(({ path, exact, component }, i) => {
-            return (
-              <Route path={path} component={component} exact={exact} key={`${component}_${i}`} />
-            );
-          })}
+          {routesConfig.map(({ path, exact, component }, i) => (
+            <Route path={path} component={component} exact={exact} key={`${component}_${i}`} />
+          ))}
         </Switch>
       </Content>
     </React.Fragment>
