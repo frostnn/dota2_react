@@ -5,6 +5,9 @@ import Players from '../components/Players';
 import Teams from '../components/Teams';
 import Heroes from '../components/Heroes';
 import Live from '../components/Live';
+import NotFound from '../pages/NotFound';
+import Home from '../pages/Home';
+import LeaguesCardsInfo from '../components/Leagues/LeaguesCardsInfo';
 const routesConfig = [
   {
     path: '/leagues',
@@ -42,6 +45,14 @@ const routesConfig = [
     exact: true,
     component: Live,
   },
+
+  {
+    path: '/',
+    exact: true,
+    component: Home,
+  },
+  { path: '/leagues/:id', exact: true, component: LeaguesCardsInfo },
+  { path: '*', exact: false, component: NotFound },
 ];
 
 export default routesConfig;

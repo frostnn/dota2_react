@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 import routesConfig from '../routes/routesConfig';
 import Content from '../containers/Content';
+
 const App = () => {
   return (
     <React.Fragment>

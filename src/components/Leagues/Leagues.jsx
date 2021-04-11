@@ -6,12 +6,14 @@ import { withErrorApi } from '../../hoc/withErrorApi';
 import Pagination from '../Pagination';
 import Search from '../Search';
 import LeaguesCards from './LeaguesCards/LeaguesCards';
+import { NavLink } from 'react-router-dom';
 
 const Leagues = ({ setErrorApi }) => {
   const [leagues, setLeagues] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(20);
   const [search, setSearch] = useState('');
+
   const getResurse = async (url) => {
     try {
       const data = await getDataApi(url);
@@ -41,7 +43,11 @@ const Leagues = ({ setErrorApi }) => {
               .filter((item) => {
                 return item.name.toLowerCase().includes(search.toLowerCase());
               })
-              .map((props, i) => <LeaguesCards {...props} key={i} />)
+              .map((props, i) => (
+                <NavLink to={`/page1`}>
+                  <LeaguesCards {...props} key={i} />
+                </NavLink>
+              ))
           : currentPosts.map((props, i) => <LeaguesCards {...props} key={i} />)}
       </div>
       <Pagination postsPerPage={postsPerPage} totalPosts={leagues.length} pagination={pagination} />

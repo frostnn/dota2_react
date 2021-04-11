@@ -1,8 +1,12 @@
+import { withRouter } from 'react-router';
 import styles from './LeaguesCards.module.scss';
 
-const LeaguesCards = ({ id, image_url, name }) => {
+const LeaguesCards = ({ id, image_url, name, history, location, match }) => {
   return (
-    <div className={styles.leagues_block_item} key={id}>
+    <div
+      className={styles.leagues_block_item}
+      key={id}
+      onClick={() => history.push(`/leagues/${id}`)}>
       <div className={styles.leagues_block_item_img}>
         {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
       </div>
@@ -11,4 +15,4 @@ const LeaguesCards = ({ id, image_url, name }) => {
   );
 };
 
-export default LeaguesCards;
+export default withRouter(LeaguesCards);
