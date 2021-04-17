@@ -20,7 +20,7 @@ const Live = ({ setErrorApi }) => {
   useEffect(() => {
     getResurse(API_LIVES);
     console.log(live);
-    let socket = new WebSocket(`wss://live.pandascore.co/matches/585474${API_TOKEN}`);
+    let socket = new WebSocket(`wss://live.pandascore.co/matches/585474?${API_TOKEN}`);
     socket.onmessage = (event) => console.log(JSON.parse(event.data));
     console.log(socket);
   }, []);

@@ -10,6 +10,11 @@ import Home from '../pages/Home';
 import LeaguesCardsInfo from '../components/Leagues/LeaguesCardsInfo';
 const routesConfig = [
   {
+    path: '/heroes',
+    exact: true,
+    component: Heroes,
+  },
+  {
     path: '/leagues',
     exact: true,
     component: Leagues,
@@ -35,11 +40,6 @@ const routesConfig = [
     component: Teams,
   },
 
-  {
-    path: '/heroes',
-    exact: true,
-    component: Heroes,
-  },
   {
     path: '/live',
     exact: true,

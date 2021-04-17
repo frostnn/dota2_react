@@ -1,7 +1,7 @@
 import { withRouter } from 'react-router';
 import styles from './LeaguesCards.module.scss';
 
-const LeaguesCards = ({ id, image_url, name, history, location, match }) => {
+const LeaguesCards = ({ id, image_url, name, history }) => {
   return (
     <div
       className={styles.leagues_block_item}

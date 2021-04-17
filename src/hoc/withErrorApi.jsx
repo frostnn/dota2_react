@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Error from '../components/Error/Loader';
+import Error from '../components/Error/Error';
 
 export const withErrorApi = (View) => {
   return (props) => {

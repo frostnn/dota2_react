@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 const LeaguesCardsInfo = ({ match, history }) => {
   const [info, setInfo] = useState([]);
   const [loading, setLoading] = useState(false);
+
   const getResurse = async (url) => {
     try {
       const data = await getDataApi(url);
@@ -20,9 +21,9 @@ const LeaguesCardsInfo = ({ match, history }) => {
       console.log(error.message);
     }
   };
+
   useEffect(() => {
     getResurse(API_LEAGUES);
-    console.log(info);
   }, []);
   return (
     <React.Fragment>
@@ -43,17 +44,20 @@ const LeaguesCardsInfo = ({ match, history }) => {
                   {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
                 </div>
               </div>
-              <div className={styles.leagues_info_body}>
-                upcoming tournaments
-                {series.map(({ begin_at, end_at, full_name, tier }) => (
+
+              {series.map(({ begin_at, end_at, full_name, tier }) => (
+                <div className={styles.leagues_info_body}>
+                  {+begin_at.slice(0, 4) < new Date().getFullYear()
+                    ? 'past tournaments'
+                    : 'upcoming tournaments'}
                   <ul className={styles.leagues_info_body_list}>
-                    <li>Begin: {end_at ? begin_at.slice(0, 10) : `unknown`}</li>
+                    <li>Begin: {begin_at ? begin_at.slice(0, 10) : `unknown`}</li>
                     <li>End: {end_at ? end_at.slice(0, 10) : `unknown`}</li>
                     <li>Name: {full_name ? full_name : `unknown`}</li>
                     <li>Tier: {tier ? tier.toUpperCase() : `unknown`}</li>
                   </ul>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           ))
       )}

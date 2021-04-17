@@ -4,40 +4,39 @@ import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
 import { withErrorApi } from '../../hoc/withErrorApi';
 import Loader from '../Loader';
+import Pagination from '../Pagination';
 
 const Players = ({ setErrorApi }) => {
   const [players, setPlayers] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const getResurse = async (url) => {
-    try {
-      const data = await getDataApi(url);
-      setPlayers(data);
-      setErrorApi(false);
-      setLoading(false);
-    } catch (error) {
-      setErrorApi(true);
-      setLoading(true);
-    }
-  };
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(30);
 
+  const indexOfLastPosts = currentPage * postsPerPage;
+  const indexOfFirstPosts = indexOfLastPosts - postsPerPage;
+  const currentPosts = players && players.slice(indexOfFirstPosts, indexOfLastPosts);
+  const pagination = (number) => {
+    setCurrentPage(number);
+  };
   useEffect(() => {
-    getResurse(API_PLAYERS);
+    fetch('https://api.opendota.com/api/proPlayers')
+      .then((resp) => resp.json())
+      .then((data) => setPlayers(data));
   }, []);
 
   return (
     <React.Fragment>
-      {loading ? (
+      {players.length === 0 ? (
         <Loader />
       ) : (
-        players.length &&
-        players.map(({ id, name, image_url, role }) => (
-          <div className={styles.Players_item} key={id}>
-            {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
-            <h1>{name.replace(/_/g, ' ').toUpperCase()}</h1>
-            <div>{role ? role : 'no('}</div>
+        currentPosts.map(({ account_id, name, avatarmedium, team_name }) => (
+          <div className={styles.Players_item} key={account_id}>
+            {avatarmedium ? <img src={`${avatarmedium}`} alt={name} /> : 'NO IMG :('}
+            <h1>{name}</h1>
+            <div>{team_name ? team_name : 'no('}</div>
           </div>
         ))
       )}
+      <Pagination postsPerPage={postsPerPage} totalPosts={players.length} pagination={pagination} />
     </React.Fragment>
   );
 };

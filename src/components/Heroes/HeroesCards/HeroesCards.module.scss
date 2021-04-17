@@ -1,23 +1,31 @@
-.leagues_block_item {
+.heroes_block_item {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 180px;
-  margin: 10px;
+  width: 256px;
+  margin: 8px;
   text-align: center;
   background: #25282a;
   border: 1px solid #ff6046;
   cursor: pointer;
   transition: 0.3s;
-  .leagues_block_item_title {
+  text-transform: uppercase;
+  position: relative;
+  overflow: hidden;
+  .heroes_block_item_icon {
+    position: absolute;
+    bottom: 0px;
+    right: 5px;
+  }
+  .heroes_block_item_title {
     font-size: 14px;
     padding: 10px;
   }
-  .leagues_block_item_img img {
-    width: 180px;
+  .heroes_block_item_img img {
+    width: 256px;
   }
 }
-.leagues_block_item:hover {
+.heroes_block_item:hover {
   transition: 0.3s;
   box-shadow: 1px 1px #ff6046, 2px 2px #ff6046, 3px 3px #ff6046, 4px 4px #ff6046, 5px 5px #ff6046,
     6px 6px #ff6046, 7px 7px #ff6046;
