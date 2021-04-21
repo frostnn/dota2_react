@@ -3,7 +3,8 @@ import { API_MATCHES } from '../../constants/const';
 import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
 import { withErrorApi } from '../../hoc/withErrorApi';
-
+import MatchesCards from './MatchesCards';
+import Loader from '../Loader';
 const Matches = ({ setErrorApi }) => {
   const [matches, setMatches] = useState([]);
 
@@ -19,20 +20,18 @@ const Matches = ({ setErrorApi }) => {
 
   useEffect(() => {
     getResurse(API_MATCHES);
+    console.log(matches);
   }, []);
 
   return (
     <React.Fragment>
-      {matches.length &&
-        matches.map(({ id, name, official_stream_url, league, status }) => (
-          <div className={styles.Matches_item} key={id}>
-            {league.image_url ? <img src={`${league.image_url}`} alt={name} /> : 'NO IMG :('}
-            <h1>{name.replace(/_/g, ' ').toUpperCase()}</h1>
-            <div>{league.name}</div>
-            <div>{official_stream_url}</div>
-            <div>{status}</div>
-          </div>
-        ))}
+      <div className={styles.matches_block}>
+        {matches.length === 0 ? (
+          <Loader />
+        ) : (
+          matches.map((props) => <MatchesCards {...props} key={props.id} />)
+        )}
+      </div>
     </React.Fragment>
   );
 };

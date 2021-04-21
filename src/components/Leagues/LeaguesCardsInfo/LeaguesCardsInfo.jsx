@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { API_LEAGUES } from '../../../constants/const';
+import { useParams } from 'react-router';
 import getDataApi from '../../../network/network';
 import Loader from '../../Loader';
 import UiLink from '../../UI/UiLink';
 import UiButton from '../../UI/UiButton';
 import styles from './LeaguesCardsInfo.module.scss';
-import PropTypes from 'prop-types';
 
-const LeaguesCardsInfo = ({ match, history }) => {
+const LeaguesCardsInfo = () => {
   const [info, setInfo] = useState([]);
   const [loading, setLoading] = useState(false);
-
+  const { id } = useParams();
   const getResurse = async (url) => {
     try {
       const data = await getDataApi(url);
@@ -31,12 +31,12 @@ const LeaguesCardsInfo = ({ match, history }) => {
         <Loader />
       ) : (
         info
-          .filter((item) => item.id === +match.params.id)
+          .filter((item) => item.id === +id)
           .map(({ name, id, image_url, url, series }) => (
             <div className={styles.leagues_info} key={id}>
               <div className={styles.leagues_info_header}>
                 <div className={styles.leagues_info_header_wrapper}>
-                  {history && <UiButton name={`Back`} direction={true} onClick={history.goBack} />}
+                  <UiButton name={`Back`} direction={true} />
                   <div className={styles.leagues_info_header_title}>{name}</div>
                   {url && <UiLink url={url} name={`Site leagues`} />}
                 </div>
@@ -44,9 +44,8 @@ const LeaguesCardsInfo = ({ match, history }) => {
                   {image_url ? <img src={`${image_url}`} alt={name} /> : 'NO IMG :('}
                 </div>
               </div>
-
-              {series.map(({ begin_at, end_at, full_name, tier }) => (
-                <div className={styles.leagues_info_body}>
+              {series.map(({ begin_at, end_at, full_name, tier }, i) => (
+                <div className={styles.leagues_info_body} key={i}>
                   {+begin_at.slice(0, 4) < new Date().getFullYear()
                     ? 'past tournaments'
                     : 'upcoming tournaments'}
@@ -64,8 +63,5 @@ const LeaguesCardsInfo = ({ match, history }) => {
     </React.Fragment>
   );
 };
-LeaguesCardsInfo.propTypes = {
-  match: PropTypes.object,
-  history: PropTypes.object,
-};
+
 export default LeaguesCardsInfo;

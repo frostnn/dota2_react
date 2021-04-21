@@ -8,6 +8,7 @@ import Live from '../components/Live';
 import NotFound from '../pages/NotFound';
 import Home from '../pages/Home';
 import LeaguesCardsInfo from '../components/Leagues/LeaguesCardsInfo';
+import TeamsCardsInfo from '../components/Teams/TeamsCardsInfo/TeamsCardsInfo';
 const routesConfig = [
   {
     path: '/heroes',
@@ -52,6 +53,7 @@ const routesConfig = [
     component: Home,
   },
   { path: '/leagues/:id', exact: true, component: LeaguesCardsInfo },
+  { path: '/teams/:id', exact: true, component: TeamsCardsInfo },
   { path: '*', exact: false, component: NotFound },
 ];
 

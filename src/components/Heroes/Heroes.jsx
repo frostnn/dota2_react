@@ -1,9 +1,8 @@
 import styles from './Heroes.module.scss';
-import { API_HEROES_PAGE_ONE, API_HEROES_PAGE_TWO, API_HEROES_STAT } from '../../constants/const';
+import { API_HEROES_PAGE_ONE, API_HEROES_STAT } from '../../constants/const';
 import React, { useEffect, useState } from 'react';
 import getDataApi from '../../network/network';
 import { withErrorApi } from '../../hoc/withErrorApi';
-
 import Loader from '../Loader';
 import HeroesCards from './HeroesCards/HeroesCards';
 import { getDataApiInfo } from '../../network/networkInfo';

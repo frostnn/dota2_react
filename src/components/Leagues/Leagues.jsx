@@ -46,7 +46,6 @@ const Leagues = ({ setErrorApi }) => {
   const currentPosts = leagues && leagues.slice(indexOfFirstPosts, indexOfLastPosts);
   useEffect(() => {
     getResurse(API_LEAGUES);
-    console.log(leagues);
   }, []);
 
   return (

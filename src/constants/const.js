@@ -7,8 +7,9 @@ export const API_LEAGUES = '/dota2/leagues?per_page=100&';
 export const API_ITEMS = '/dota2/items?per_page=100&';
 export const API_MATCHES = '/dota2/matches?per_page=100&';
 export const API_PLAYERS = '/dota2/players?per_page=100&';
-export const API_TEAMS = '/dota2/teams?per_page=100&';
+
 export const API_LIVES = '/lives?';
 
 //API opendota
 export const API_HEROES_STAT = 'https://api.opendota.com/api/heroStats';
+export const API_TEAMS = 'https://api.opendota.com/api/teams';

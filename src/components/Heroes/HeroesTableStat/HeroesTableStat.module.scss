@@ -4,15 +4,13 @@
   width: 100%;
   opacity: 0;
   transition: 0.3s;
+  height: 145px;
   .table_content {
     width: 100%;
     z-index: 999;
     position: relative;
     font-size: 18px;
     color: rgba(255, 255, 255, 0.7);
-    tr {
-      height: 45px;
-    }
   }
 }
 .show {

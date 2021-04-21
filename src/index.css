@@ -12,3 +12,8 @@ body {
   position: relative;
   background-image: url(../src/assets/img/greyfade.jpg);
 }
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
