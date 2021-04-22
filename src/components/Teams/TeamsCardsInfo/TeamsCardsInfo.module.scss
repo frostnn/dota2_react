@@ -7,66 +7,39 @@
   font-size: 42px;
   font-weight: 600;
 }
-.teams_item_chart {
+
+.teams_item_raiting {
   display: flex;
   align-items: center;
-  padding: 30px 0;
-  .teams_item_chart_value_wrapper {
-    margin-left: 40px;
-  }
-  .teams_item_chart_text {
-    fill: #fff;
-    -moz-transform: translateY(0.25em);
-    -ms-transform: translateY(0.25em);
-    -webkit-transform: translateY(0.25em);
-    transform: translateY(0.25em);
-  }
-  .teams_item_chart_number {
-    font-size: 26px;
-    line-height: 1;
-    text-anchor: middle;
-    -moz-transform: translateY(-0.25em);
-    -ms-transform: translateY(-0.25em);
-    -webkit-transform: translateY(-0.25em);
-    transform: translateY(-0.25em);
-  }
-  .teams_item_chart_label {
-    font-size: 16px;
-    text-transform: uppercase;
-    text-anchor: middle;
-    -moz-transform: translateY(0.7em);
-    -ms-transform: translateY(0.7em);
-    -webkit-transform: translateY(0.7em);
-    transform: translateY(0.7em);
-  }
-
-  .teams_item_chart_value {
-    position: relative;
-    margin: 5px 0;
-    &::before {
-      position: absolute;
-      content: '';
-      width: 20px;
-      height: 20px;
-      left: -25px;
-      top: 2px;
-      background: #78be1b;
-      border-radius: 50%;
-    }
-  }
-  circle {
-    fill: rgba(0, 0, 0, 0);
-    stroke: #ff6046;
-    stroke-width: 15;
-    stroke-dasharray: 408px 408px;
-  }
-  circle:nth-child(2n) {
-    fill: rgba(0, 0, 0, 0);
-    stroke: #78be1b;
-    stroke-width: 15;
-  }
 }
 
-.teams_item_chart_value:nth-child(2)::before {
-  background: #ff6046;
+.teams_item_logo {
+  position: relative;
+  overflow: hidden;
+  &:after {
+    content: '';
+    height: 200%;
+    left: -230%;
+    opacity: 0;
+    position: absolute;
+    top: -20%;
+    transform: rotate(-30deg);
+    width: 200%;
+    background: rgba(255, 255, 255, 0.13);
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.13) 0%,
+      rgba(255, 255, 255, 0.13) 77%,
+      rgba(255, 255, 255, 0.5) 92%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+  &:hover:after {
+    left: -50%;
+    opacity: 1;
+    top: -50%;
+    transition-duration: 0.7s, 0.7s, 0.15s;
+    transition-property: left, top, opacity;
+    transition-timing-function: ease;
+  }
 }

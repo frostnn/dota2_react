@@ -8,7 +8,7 @@ import Live from '../components/Live';
 import NotFound from '../pages/NotFound';
 import Home from '../pages/Home';
 import LeaguesCardsInfo from '../components/Leagues/LeaguesCardsInfo';
-import TeamsCardsInfo from '../components/Teams/TeamsCardsInfo/TeamsCardsInfo';
+import TeamsCardsInfo from '../components/Teams/TeamsCardsInfo';
 const routesConfig = [
   {
     path: '/heroes',
