@@ -49,11 +49,11 @@ const TeamsCardsInfo = ({ setErrorApi }) => {
           <TeamsCardsChart wins={wins} losses={losses} />
           <div>Last match: {lastMatch.getDate()} days</div>
         </div>
+        <TeamsCardsPlayers id={id} />
         <div className={styles.teams_item_logo}>
           <img src={logo_url} alt={name} />
         </div>
       </div>
-      <TeamsCardsPlayers id={id} />
     </div>
   );
 };

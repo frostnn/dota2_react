@@ -6,9 +6,7 @@ const MenuHeader = () => {
     { title: 'Heroes', link: '/heroes' },
     { title: 'Teams', link: '/teams' },
     { title: 'Leagues', link: '/leagues' },
-    { title: 'Items', link: '/items' },
     { title: 'Matches', link: '/matches' },
-    { title: 'Players', link: '/players' },
     { title: 'Live', link: '/live' },
   ];
   return (

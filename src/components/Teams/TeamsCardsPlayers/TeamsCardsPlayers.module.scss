@@ -1,40 +1,16 @@
-.teams_block_item {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 180px;
-  height: 220px;
-  margin: 8px;
-  text-align: center;
-  background: #25282a;
-  border: 1px solid #ff6046;
-  cursor: pointer;
-  transition: 0.3s;
-  text-transform: uppercase;
-  position: relative;
-  overflow: hidden;
-  .teams_block_item_icon {
-    position: absolute;
-    bottom: 0px;
-    right: 5px;
+.players_team {
+  .players_team_title {
+    font-size: 32px;
+    margin-bottom: 15px;
+    text-align: center;
   }
-  .teams_block_item_title {
-    font-size: 14px;
-    padding: 10px;
-  }
-  .teams_block_item_img img {
-    max-width: 180px;
-    max-height: 180px;
-  }
-  .teams_block_item_img {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  .teams_block_item_noimg {
-    width: 100%;
-    height: 100%;
+  .players_team_title_name {
+    font-size: 20px;
+    padding: 7px 0;
+    text-align: center;
+    &:hover {
+      color: #ff6046;
+    }
   }
 }
 .teams_block_item:hover {
